@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 import requests
-# from flask_jwt import jwt_required
+from flask_jwt import jwt_required
 
 
 class ComicvineSearchParser:
@@ -21,6 +21,7 @@ class ComicvineSeriesSearch(Resource):
         'User-Agent': 'Wade Wilson'
     }
 
+    @jwt_required()
     def get(self):
         data = ComicvineSearchParser.series_search_parser.parse_args()
         cvapi_key = data['cvapi_key']
@@ -35,8 +36,8 @@ class ComicvineSeriesSearch(Resource):
 
 class ComicvineComicSearch(Resource):
 
-    @staticmethod
-    def get():
+    @jwt_required()
+    def get(self):
         data = ComicvineSearchParser.comic_search_parser.parse_args()
         comicvine_id = data['comicvine_id']
         issue_number = data['issue_number']

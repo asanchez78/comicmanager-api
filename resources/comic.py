@@ -15,6 +15,7 @@ class Comic(Resource):
     parser.add_argument('wiki_id', type=str, help="This field cannot be blank")
     parser.add_argument('wikiUpdated', type=str, help="This field cannot be blank")
 
+    @jwt_required()
     def get(self):
         data = Comic.parser.parse_args()
 
@@ -68,5 +69,6 @@ class Comic(Resource):
 
 
 class ComicList(Resource):
+    @jwt_required()
     def get(self):
         return {'comics': [comic.json() for comic in ComicModel.query.all()]}

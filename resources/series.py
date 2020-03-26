@@ -37,6 +37,7 @@ class Series(Resource):
                         # required=True,
                         help='series_name cannot be blank')
 
+    @jwt_required()
     def get(self):
         data = Series.parser.parse_args()
         series = SeriesModel.find_by_id(data['series_id'])
@@ -73,5 +74,6 @@ class Series(Resource):
 
 
 class SeriesList(Resource):
+    @jwt_required()
     def get(self):
         return {'series': [series.json(list_comics=False) for series in SeriesModel.query.all()]}

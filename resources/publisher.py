@@ -9,6 +9,7 @@ class Publisher(Resource):
     parser.add_argument('publisherName', type=str)
     parser.add_argument('publisherShort', type=str)
 
+    @jwt_required()
     def get(self):
         data = Publisher.parser.parse_args()
         publisher = PublisherModel.find_by_id(data['publisher_id'])
@@ -42,5 +43,6 @@ class Publisher(Resource):
 
 class PublisherList(Resource):
 
+    @jwt_required()
     def get(self):
         return {'series': [publisher.json() for publisher in PublisherModel.query.all()]}
