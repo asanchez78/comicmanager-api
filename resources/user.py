@@ -1,5 +1,7 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
+import json
+from models.comic import ComicModel
 
 
 class UserRegister(Resource):
@@ -34,3 +36,21 @@ class UserRegister(Resource):
         # connection.close()
 
         return {"message": "User created successfully."}, 201
+
+
+class UsersComics(Resource):
+
+    parser = reqparse.RequestParser()
+    parser.add_argument('user_id',
+                        type=int,
+                        required=True,
+                        help="User ID is required")
+    parser.add_argument('comic_id',
+                        type=int,
+                        help="Comic ID is required")
+
+    def get(self):
+        data = UsersComics.parser.parse_args()
+        comics = UserModel.find_users_comics(str(data['user_id']))
+        return comics
+        # return {'comics': [jsonify(comics)]}

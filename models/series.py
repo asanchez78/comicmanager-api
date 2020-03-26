@@ -8,16 +8,16 @@ class SeriesModel(db.Model):
     publisherID = db.Column(db.Integer, db.ForeignKey('publishers.publisherID'))
     series_name = db.Column(db.String(100))
     series_vol = db.Column(db.Integer)
-    ccVolumeID = db.Column(db.Integer)
+    cvVolumeID = db.Column(db.Integer)
     apiDetailURL = db.Column(db.String(255))
     siteDetailURL = db.Column(db.String(255))
     comics = db.relationship('ComicModel', lazy='dynamic')
 
-    def __init__(self, series_name, series_vol, publisherID, ccVolumeID, apiDetailURL, siteDetailURL):
+    def __init__(self, series_name, series_vol, publisherID, cvVolumeID, apiDetailURL, siteDetailURL):
         self.series_name = series_name
         self.series_vol = series_vol
         self.publisherID = publisherID
-        self.ccVolumeID = ccVolumeID
+        self.cvVolumeID = cvVolumeID
         self.apiDetailURL = apiDetailURL
         self.siteDetailURL = siteDetailURL
 
@@ -27,7 +27,7 @@ class SeriesModel(db.Model):
                     'series': self.series_name,
                     'volume': self.series_vol,
                     'publisher': self.publisherID,
-                    'comicvine id': self.ccVolumeID,
+                    'comicvine id': self.cvVolumeID,
                     'api url': self.apiDetailURL,
                     'site url': self.siteDetailURL,
                     'comics': [comic.json() for comic in self.comics.all()]}
@@ -36,7 +36,7 @@ class SeriesModel(db.Model):
                 'series': self.series_name,
                 'volume': self.series_vol,
                 'publisher': self.publisherID,
-                'comicvine id': self.ccVolumeID,
+                'comicvine id': self.cvVolumeID,
                 'api url': self.apiDetailURL,
                 'site url': self.siteDetailURL}
 

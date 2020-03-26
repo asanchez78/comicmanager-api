@@ -1,4 +1,5 @@
 from db import db
+import sqlite3
 
 
 class ComicModel(db.Model):

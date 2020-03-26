@@ -22,9 +22,9 @@ class Series(Resource):
     parser.add_argument('publisherID',
                         type=str,
                         help='publisher id cannot be blank')
-    parser.add_argument('ccVolumeID',
+    parser.add_argument('cvVolumeID',
                         type=str,
-                        help='ccVolumeID cannot be blank')
+                        help='cvVolumeID cannot be blank')
     parser.add_argument('apiDetailURL',
                         type=str,
                         help='apiDetailURL cannot be blank')
@@ -53,7 +53,7 @@ class Series(Resource):
             return {'message': "A series with name '{}' and volume '{}' already exists."
                     .format(data['series_name'], data['series_vol'])}, 400
 
-        series = SeriesModel(data['series_name'], data['series_vol'], data['publisherID'], data['ccVolumeID'],
+        series = SeriesModel(data['series_name'], data['series_vol'], data['publisherID'], data['cvVolumeID'],
                              data['apiDetailURL'], data['siteDetailURL'])
         try:
             series.save_to_db()

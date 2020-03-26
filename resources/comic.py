@@ -5,59 +5,15 @@ from models.comic import ComicModel
 
 class Comic(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('comic_id',
-                        type=int,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('series_id',
-                        type=int,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('issue_number',
-                        type=str,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('story_name',
-                        type=str,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('release_date',
-                        type=str,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('plot',
-                        type=str,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('cover_image',
-                        type=str,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('wiki_id',
-                        type=str,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
-
-    parser.add_argument('wikiUpdated',
-                        type=str,
-                        # required=True,
-                        help="This field cannot be blank"
-                        )
+    parser.add_argument('comic_id', type=int, help="This field cannot be blank")
+    parser.add_argument('series_id', type=int, help="This field cannot be blank")
+    parser.add_argument('issue_number', type=str, help="This field cannot be blank")
+    parser.add_argument('story_name', type=str, help="This field cannot be blank")
+    parser.add_argument('release_date', type=str, help="This field cannot be blank")
+    parser.add_argument('plot', type=str, help="This field cannot be blank")
+    parser.add_argument('cover_image', type=str, help="This field cannot be blank")
+    parser.add_argument('wiki_id', type=str, help="This field cannot be blank")
+    parser.add_argument('wikiUpdated', type=str, help="This field cannot be blank")
 
     def get(self):
         data = Comic.parser.parse_args()
