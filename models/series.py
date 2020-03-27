@@ -22,8 +22,7 @@ class SeriesModel(db.Model):
         self.siteDetailURL = siteDetailURL
 
     def json(self, list_comics):
-        print(list_comics)
-        if list_comics is True:
+        if list_comics:
             return {'series_id': self.series_id,
                     'series': self.series_name,
                     'volume': self.series_vol,

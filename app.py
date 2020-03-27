@@ -29,16 +29,16 @@ def create_tables():
 jwt = JWT(app, authenticate, identity)  # /auth
 
 
-api.add_resource(Comic, '/comic/')
-api.add_resource(ComicList, '/comics/')
-api.add_resource(Series, '/series/')
-api.add_resource(SeriesList, '/serieslist/')
-api.add_resource(Publisher, '/publisher/')
-api.add_resource(PublisherList, '/publishers/')
-api.add_resource(UserRegister, '/register')
-api.add_resource(UsersComics, '/user/comics/')
-api.add_resource(ComicvineSeriesSearch, '/comicvinesearch/series/')
-api.add_resource(ComicvineComicSearch, '/comicvinesearch/comic/')
+api.add_resource(Comic, '/v1/comic/')
+api.add_resource(ComicList, '/v1/comics/')
+api.add_resource(Series, '/v1/series/')
+api.add_resource(SeriesList, '/v1/serieslist/')
+api.add_resource(Publisher, '/v1/publisher/')
+api.add_resource(PublisherList, '/v1/publishers/')
+api.add_resource(UserRegister, '/v1/register')
+api.add_resource(UsersComics, '/v1/user/comics/')
+api.add_resource(ComicvineSeriesSearch, '/v1/comicvinesearch/series/')
+api.add_resource(ComicvineComicSearch, '/v1/comicvinesearch/comic/')
 
 
 if __name__ == '__main__':
