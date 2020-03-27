@@ -42,7 +42,7 @@ class Series(Resource):
         data = Series.parser.parse_args()
         series = SeriesModel.find_by_id(data['series_id'])
         if series:
-            return series.json(list_comics=True)
+            return series.json(data['list_comics'])
         return {'message': 'Series not Found'}
 
     @jwt_required()
