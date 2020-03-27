@@ -7,6 +7,7 @@ from resources.comic import Comic, ComicList
 from resources.series import Series, SeriesList
 from resources.publisher import Publisher, PublisherList
 from resources.comicvinesearch import ComicvineSeriesSearch, ComicvineComicSearch
+from datetime import timedelta
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -22,9 +23,9 @@ def create_tables():
     db.create_all()
 
 
-# app.config['JWT_AUTH_URL_RULE'] = '/login'
+app.config['JWT_AUTH_URL_RULE'] = '/v1/auth'
 #  config JWT to expire within half an hour
-# app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
+#  app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
 
 jwt = JWT(app, authenticate, identity)  # /auth
 
