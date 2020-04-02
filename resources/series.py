@@ -72,8 +72,24 @@ class Series(Resource):
 
         return {'message': 'Series deleted'}
 
+    @jwt_required()
+    def put(self):
+
+        data = Series.parser.parse_args()
+
+        series = SeriesModel.find_by_id(data['series_id'])
+
+        if series is None:
+            series = SeriesModel(data['series_id'], data['issue_number'], data['story_name'], data['release_date'],
+                               data['plot'], data['cover_image'], data['wiki_id'], data['wikiUpdated'])
+        else:
+            series.plot = data['plot']
+        series.save_to_db()
+
+        return series.json()
 
 class SeriesList(Resource):
     @jwt_required()
     def get(self):
-        return {'series': [series.json(list_comics=False) for series in SeriesModel.query.all()]}
+        data = Series.parser.parse_args()
+        return {'series': [series.json(data['list_comics']) for series in SeriesModel.query.all()]}

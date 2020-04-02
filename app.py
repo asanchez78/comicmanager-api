@@ -25,7 +25,7 @@ def create_tables():
 
 app.config['JWT_AUTH_URL_RULE'] = '/v1/auth'
 #  config JWT to expire within half an hour
-#  app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=7200)
 
 jwt = JWT(app, authenticate, identity)  # /auth
 
