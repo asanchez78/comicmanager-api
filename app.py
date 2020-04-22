@@ -11,7 +11,7 @@ from datetime import timedelta
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@127.0.0.1/comicdb'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://user:pass@host/database'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['BUNDLE_ERRORS'] = True
 app.secret_key = 'test'
@@ -46,4 +46,4 @@ if __name__ == '__main__':
     from db import db
 
     db.init_app(app)
-    app.run(port=5000, debug=True)
+    app.run(port=5000, host='0.0.0.0', debug=True)
